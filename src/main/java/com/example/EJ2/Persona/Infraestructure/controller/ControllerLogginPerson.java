@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-public class Logged {
+public class ControllerLogginPerson {
 
     @Autowired
     PersonaServiceImpl personService;
