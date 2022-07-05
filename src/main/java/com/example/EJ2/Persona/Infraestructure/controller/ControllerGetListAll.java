@@ -3,10 +3,10 @@ package com.example.EJ2.Persona.Infraestructure.controller;
 
 import com.example.EJ2.Persona.Application.UserCases.PersonaServiceImpl;
 import com.example.EJ2.Persona.Infraestructure.dto.Inputs.PersonaInputDTO;
+import com.example.EJ2.Persona.Infraestructure.dto.Outputs.PersonaOutSimpleDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,14 +21,13 @@ public class ControllerGetListAll {
     @Autowired
     private ModelMapper model;
 
-    //@GetMapping(value = "/allDisplay")
-    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<PersonaInputDTO>> getAllData() throws Exception {
+    @GetMapping(value = "/allDisplay")
+    public List<PersonaOutSimpleDTO> getAllData() throws Exception {
         if (servicio.getTotalList().isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(servicio.getTotalList());
+            return null;
         }
-         else {
-             return ResponseEntity.status(HttpStatus.OK).body(servicio.getTotalList());
+        else {
+            return servicio.getTotalList();
         }
     }
 }

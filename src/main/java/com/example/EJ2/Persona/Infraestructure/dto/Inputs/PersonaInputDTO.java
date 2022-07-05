@@ -2,9 +2,12 @@ package com.example.EJ2.Persona.Infraestructure.dto.Inputs;
 
 
 
+import com.example.EJ2.Role.domain.Role;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Getter
@@ -24,6 +27,7 @@ public class PersonaInputDTO {
     private Date created_date;
     private String imagen_url;
     private Date termination_date;
+    private Collection<Role> roles = new ArrayList<>();
 
 
 }
