@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().antMatchers("/**").permitAll();
         http.authorizeRequests().antMatchers(GET, "/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(POST, "/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER");
         http.authorizeRequests().antMatchers(PUT, "/**").hasAnyAuthority("ROLE_ADMIN");
@@ -69,9 +70,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
+
     //---Permite el acceso a H2 ya que spring security bloquea por seguridad su acceso, no es recomendable---
+
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web
                 .ignoring()
                 .antMatchers("/h2-console/**");
